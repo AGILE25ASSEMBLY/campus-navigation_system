@@ -1,0 +1,41 @@
+Problem statement:
+To devlop a mobile friendly web app with QR code access for the campus navigation system project.
+Inputs:
+Starting point,destination.
+Datas:
+Main bock
+Ground floor
+From entrance
+ rightside->administration office [ next to ]
+                 ->dean/principal office
+Next to dean/principle office ->library
+Leftside->office room[next to]
+                ->cash counter
+Next to cash counter ->admission cell-> department of mechanical engineering -> chairman room->steps
+Next to steps->ladies restroom ->[next to ladies restroom ]drinking water 
+On going forward from drinking water->[on the left side]mini-auditorium 
+On going forward from drinking water->[middle]  electrical machines lab
+On going forward from drinking water->[on the right side]tamil mandram,ramanujan club,Shakespeare english club ->[next to this]health centre->[next to health centre]chemistry lab->[next to chemistry lab]physics lab
+
+1st floor
+[Centre] department of computer science and engineering
+[left side of  department of computer science and engineering]LH5 [then] LH6 [THEN] LH7 [THEN] LH8       
+[right side of department of computer science and engineering] LH1 [then] LH2 [THEN] LH3 [THEN] LH4
+Next to steps->boys restroom ->[next to boys restroom ]drinking water 
+On going forward from drinking water->[on the left side]counselling room->[next to counselling room]language room.
+On going forward from drinking water->[middle]  electronics and communication lab
+On going forward from drinking water->[on the right side]common boys room->[next to common boys room]->electronics and communication lab
+
+2nd floor
+[centre] department of science and humanities
+[left side of  department of computer science and engineering]LH13 [then] LH14 [THEN] LH15 [THEN] LH16
+[right side of department of computer science and engineering] LH9 [then] LH10 [THEN] LH11 [THEN] LH12
+Next to steps->[[left side]boys restroom ->[right side]ladies restroom->[next to boys restroom ]drinking water 
+On going forward from drinking water->[on the right side]common girls room->[next to common girls room]->then digital and electronic system lab->then embedded lab->then department of electronics and communication engineering->then circuits and device lab->[then] optical and microwave lab.
+
+3rd floor 
+[centre]Centralised lab
+Left of centralized lab is Torvalds tech lab]->[then] power-unit->[then] placement office room->[then] GD  room-1 ->[then]panel room->[then]waiting room.
+Left of centralized lab is turning minds lab ->[then]lanier virtual lab->[then] kernel lab->vanneuman computing lab[then]Charles Babbage->[then] power-unit.
+
+

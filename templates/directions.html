@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Navigation - Directions</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/favicon.svg') }}">
+    <meta name="description" content="Step-by-step campus navigation directions">
+    <meta name="theme-color" content="#3b82f6">
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="text-center py-4 mb-4">
+            <h1 class="display-4 mb-3">
+                <i class="fas fa-map-marked-alt text-primary me-2"></i>
+                Campus Navigation
+            </h1>
+            <p class="lead text-muted">Step-by-step directions</p>
+        </header>
+
+        <!-- Back Button -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-2"></i>
+                    Back to Navigation
+                </a>
+            </div>
+        </div>
+
+        <!-- Directions or Error -->
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                {% if error %}
+                <div class="card border-danger">
+                    <div class="card-body text-center">
+                        <i class="fas fa-exclamation-triangle text-danger fa-3x mb-3"></i>
+                        <h5 class="card-title text-danger">Navigation Error</h5>
+                        <p class="card-text">{{ error }}</p>
+                        <a href="{{ url_for('index') }}" class="btn btn-primary">
+                            <i class="fas fa-redo me-2"></i>
+                            Try Again
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if directions %}
+                <div class="card">
+                    <div class="card-body">
+                        <div class="text-center mb-4">
+                            <h5 class="card-title">
+                                <i class="fas fa-route me-2"></i>
+                                Directions Ready
+                            </h5>
+                            <p class="text-muted">
+                                From <strong class="text-success">{{ start }}</strong> 
+                                to <strong class="text-danger">{{ destination }}</strong>
+                            </p>
+                        </div>
+                        
+                        <div class="directions-container">
+                            {% for direction in directions %}
+                            <div class="direction-step mb-3">
+                                <div class="d-flex align-items-start">
+                                    <div class="step-icon me-3">
+                                        {% if loop.first %}
+                                        <i class="fas fa-play-circle text-success"></i>
+                                        {% elif loop.last %}
+                                        <i class="fas fa-flag-checkered text-danger"></i>
+                                        {% else %}
+                                        <i class="fas fa-arrow-right text-primary"></i>
+                                        {% endif %}
+                                    </div>
+                                    <div class="step-content">
+                                        <p class="mb-0">{{ direction }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="text-center mt-4">
+                            <button class="btn btn-success btn-lg" onclick="speakDirections()" id="voiceBtn">
+                                <i class="fas fa-volume-up me-2"></i>
+                                Read Directions Aloud
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="card-title mb-3">
+                            <i class="fas fa-tools me-2"></i>
+                            Quick Actions
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <a href="{{ url_for('index') }}" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-route me-2"></i>
+                                    New Navigation
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <button class="btn btn-outline-info w-100" onclick="shareLocation()">
+                                    <i class="fas fa-share-alt me-2"></i>
+                                    Share Directions
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center py-4 mt-5 text-muted">
+            <p><i class="fas fa-university me-1"></i> Campus Navigation System</p>
+            <p><small>Mobile-friendly navigation with QR code access</small></p>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script>
+        // Text-to-speech functionality
+        function speakDirections() {
+            {% if directions %}
+            const directions = [
+                {% for direction in directions %}
+                "{{ direction|replace('→', '') }}",
+                {% endfor %}
+            ];
+            
+            if ('speechSynthesis' in window) {
+                const voiceBtn = document.getElementById('voiceBtn');
+                
+                // Change button to indicate speaking
+                voiceBtn.innerHTML = '<i class="fas fa-volume-up me-2"></i>Speaking...';
+                voiceBtn.disabled = true;
+                
+                // Stop any current speech
+                speechSynthesis.cancel();
+                
+                let currentIndex = 0;
+                
+                function speakNext() {
+                    if (currentIndex < directions.length) {
+                        const utterance = new SpeechSynthesisUtterance(directions[currentIndex]);
+                        
+                        // Ensure voices are loaded
+                        function setVoiceAndSpeak() {
+                            const voices = speechSynthesis.getVoices();
+                            
+                            // Find best female voice (prioritize natural sounding voices)
+                            const femaleVoice = voices.find(voice => 
+                                voice.name.toLowerCase().includes('samantha') ||
+                                voice.name.toLowerCase().includes('susan') ||
+                                voice.name.toLowerCase().includes('karen') ||
+                                voice.name.toLowerCase().includes('zira') ||
+                                voice.name.toLowerCase().includes('hazel') ||
+                                voice.name.toLowerCase().includes('female') || 
+                                voice.name.toLowerCase().includes('woman') ||
+                                voice.gender === 'female'
+                            );
+                            
+                            if (femaleVoice) {
+                                utterance.voice = femaleVoice;
+                            }
+                            
+                            // Voice settings for clear and soothing speech
+                            utterance.rate = 0.7;  // Slower for clarity
+                            utterance.pitch = 1.1; // Slightly higher pitch
+                            utterance.volume = 0.9;
+                            
+                            utterance.onend = function() {
+                                currentIndex++;
+                                // Add a 1-second gap between directions
+                                setTimeout(speakNext, 1000);
+                            };
+                            
+                            utterance.onerror = function() {
+                                // Reset button on error
+                                voiceBtn.innerHTML = '<i class="fas fa-volume-up me-2"></i>Read Directions Aloud';
+                                voiceBtn.disabled = false;
+                            };
+                            
+                            speechSynthesis.speak(utterance);
+                        }
+                        
+                        // Wait for voices to load if needed
+                        if (speechSynthesis.getVoices().length === 0) {
+                            speechSynthesis.onvoiceschanged = setVoiceAndSpeak;
+                        } else {
+                            setVoiceAndSpeak();
+                        }
+                    } else {
+                        // Reset button when finished
+                        voiceBtn.innerHTML = '<i class="fas fa-volume-up me-2"></i>Read Directions Aloud';
+                        voiceBtn.disabled = false;
+                    }
+                }
+                
+                // Start speaking
+                speakNext();
+            } else {
+                alert('Text-to-speech is not supported in your browser.');
+            }
+            {% endif %}
+        }
+
+        // Share functionality
+        function shareLocation() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Campus Navigation Directions',
+                    text: 'Check out these campus navigation directions',
+                    url: window.location.href
+                });
+            } else {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(window.location.href).then(() => {
+                    alert('Directions link copied to clipboard!');
+                });
+            }
+        }
+    </script>
+</body>
+</html>
