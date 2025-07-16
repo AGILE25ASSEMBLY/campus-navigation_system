@@ -1,0 +1,385 @@
+{
+  "floors": {
+    "ground": {
+      "name": "Ground Floor",
+      "locations": {
+        "entrance": {
+          "name": "Main Entrance",
+          "coordinates": [5, 0],
+          "connections": ["administration office", "office room", "steps"]
+        },
+        "administration office": {
+          "name": "Administration Office",
+          "coordinates": [6, 0],
+          "connections": ["entrance", "dean office"]
+        },
+        "dean office": {
+          "name": "Dean/Principal Office",
+          "coordinates": [7, 0],
+          "connections": ["administration office", "library"]
+        },
+        "library": {
+          "name": "Library",
+          "coordinates": [8, 0],
+          "connections": ["dean office"]
+        },
+        "office room": {
+          "name": "Office Room",
+          "coordinates": [4, 0],
+          "connections": ["entrance", "cash counter"]
+        },
+        "cash counter": {
+          "name": "Cash Counter",
+          "coordinates": [3, 0],
+          "connections": ["office room", "admission cell"]
+        },
+        "admission cell": {
+          "name": "Admission Cell",
+          "coordinates": [2, 0],
+          "connections": ["cash counter", "mechanical department"]
+        },
+        "mechanical department": {
+          "name": "Department of Mechanical Engineering",
+          "coordinates": [1, 0],
+          "connections": ["admission cell", "chairman room"]
+        },
+        "chairman room": {
+          "name": "Chairman Room",
+          "coordinates": [0, 0],
+          "connections": ["mechanical department", "steps"]
+        },
+        "steps": {
+          "name": "Steps",
+          "coordinates": [0, 1],
+          "connections": ["chairman room", "ladies restroom", "entrance"],
+          "transition": "first"
+        },
+        "ladies restroom": {
+          "name": "Ladies Restroom",
+          "coordinates": [0, 2],
+          "connections": ["steps", "drinking water ground"]
+        },
+        "drinking water ground": {
+          "name": "Drinking Water",
+          "coordinates": [0, 3],
+          "connections": ["ladies restroom", "mini auditorium", "electrical machines lab", "tamil mandram"]
+        },
+        "mini auditorium": {
+          "name": "Mini Auditorium",
+          "coordinates": [-1, 4],
+          "connections": ["drinking water ground"]
+        },
+        "electrical machines lab": {
+          "name": "Electrical Machines Lab",
+          "coordinates": [0, 4],
+          "connections": ["drinking water ground"]
+        },
+        "tamil mandram": {
+          "name": "Tamil Mandram",
+          "coordinates": [1, 4],
+          "connections": ["drinking water ground", "ramanujan club"]
+        },
+        "ramanujan club": {
+          "name": "Ramanujan Club",
+          "coordinates": [2, 4],
+          "connections": ["tamil mandram", "shakespeare club"]
+        },
+        "shakespeare club": {
+          "name": "Shakespeare English Club",
+          "coordinates": [3, 4],
+          "connections": ["ramanujan club", "health centre"]
+        },
+        "health centre": {
+          "name": "Health Centre",
+          "coordinates": [4, 4],
+          "connections": ["shakespeare club", "chemistry lab"]
+        },
+        "chemistry lab": {
+          "name": "Chemistry Lab",
+          "coordinates": [5, 4],
+          "connections": ["health centre", "physics lab"]
+        },
+        "physics lab": {
+          "name": "Physics Lab",
+          "coordinates": [6, 4],
+          "connections": ["chemistry lab"]
+        }
+      }
+    },
+    "first": {
+      "name": "First Floor",
+      "locations": {
+        "cse department": {
+          "name": "Department of Computer Science and Engineering",
+          "coordinates": [0, 2],
+          "connections": ["lh5", "lh1", "steps first", "boys restroom"]
+        },
+        "lh5": {
+          "name": "LH5",
+          "coordinates": [-1, 2],
+          "connections": ["cse department", "lh6"]
+        },
+        "lh6": {
+          "name": "LH6",
+          "coordinates": [-2, 2],
+          "connections": ["lh5", "lh7"]
+        },
+        "lh7": {
+          "name": "LH7",
+          "coordinates": [-3, 2],
+          "connections": ["lh6", "lh8"]
+        },
+        "lh8": {
+          "name": "LH8",
+          "coordinates": [-4, 2],
+          "connections": ["lh7"]
+        },
+        "lh1": {
+          "name": "LH1",
+          "coordinates": [1, 2],
+          "connections": ["cse department", "lh2"]
+        },
+        "lh2": {
+          "name": "LH2",
+          "coordinates": [2, 2],
+          "connections": ["lh1", "lh3"]
+        },
+        "lh3": {
+          "name": "LH3",
+          "coordinates": [3, 2],
+          "connections": ["lh2", "lh4"]
+        },
+        "lh4": {
+          "name": "LH4",
+          "coordinates": [4, 2],
+          "connections": ["lh3", "stairs to second"]
+        },
+        "steps first": {
+          "name": "Steps",
+          "coordinates": [0, 1],
+          "connections": ["cse department", "boys restroom"],
+          "transition": "ground"
+        },
+        "boys restroom": {
+          "name": "Boys Restroom",
+          "coordinates": [0, 3],
+          "connections": ["steps first", "drinking water first"]
+        },
+        "drinking water first": {
+          "name": "Drinking Water",
+          "coordinates": [0, 4],
+          "connections": ["boys restroom", "counselling room", "ece lab first", "common boys room"]
+        },
+        "counselling room": {
+          "name": "Counselling Room",
+          "coordinates": [-1, 5],
+          "connections": ["drinking water first", "language room"]
+        },
+        "language room": {
+          "name": "Language Room",
+          "coordinates": [-2, 5],
+          "connections": ["counselling room"]
+        },
+        "ece lab first": {
+          "name": "Electronics and Communication Lab",
+          "coordinates": [0, 5],
+          "connections": ["drinking water first", "common boys room"]
+        },
+        "common boys room": {
+          "name": "Common Boys Room",
+          "coordinates": [1, 5],
+          "connections": ["drinking water first", "ece lab first"]
+        },
+        "stairs to second": {
+          "name": "Stairs to Second Floor",
+          "coordinates": [5, 2],
+          "connections": ["lh4"],
+          "transition": "second"
+        }
+      }
+    },
+    "second": {
+      "name": "Second Floor",
+      "locations": {
+        "science humanities": {
+          "name": "Department of Science and Humanities",
+          "coordinates": [0, 2],
+          "connections": ["lh13", "lh9", "steps second", "boys restroom second"]
+        },
+        "lh13": {
+          "name": "LH13",
+          "coordinates": [-1, 2],
+          "connections": ["science humanities", "lh14"]
+        },
+        "lh14": {
+          "name": "LH14",
+          "coordinates": [-2, 2],
+          "connections": ["lh13", "lh15"]
+        },
+        "lh15": {
+          "name": "LH15",
+          "coordinates": [-3, 2],
+          "connections": ["lh14", "lh16"]
+        },
+        "lh16": {
+          "name": "LH16",
+          "coordinates": [-4, 2],
+          "connections": ["lh15"]
+        },
+        "lh9": {
+          "name": "LH9",
+          "coordinates": [1, 2],
+          "connections": ["science humanities", "lh10"]
+        },
+        "lh10": {
+          "name": "LH10",
+          "coordinates": [2, 2],
+          "connections": ["lh9", "lh11"]
+        },
+        "lh11": {
+          "name": "LH11",
+          "coordinates": [3, 2],
+          "connections": ["lh10", "lh12"]
+        },
+        "lh12": {
+          "name": "LH12",
+          "coordinates": [4, 2],
+          "connections": ["lh11", "stairs to third"]
+        },
+        "steps second": {
+          "name": "Steps",
+          "coordinates": [0, 1],
+          "connections": ["science humanities", "boys restroom second"],
+          "transition": "first"
+        },
+        "boys restroom second": {
+          "name": "Boys Restroom",
+          "coordinates": [-1, 3],
+          "connections": ["steps second", "ladies restroom second", "drinking water second"]
+        },
+        "ladies restroom second": {
+          "name": "Ladies Restroom",
+          "coordinates": [1, 3],
+          "connections": ["boys restroom second", "drinking water second"]
+        },
+        "drinking water second": {
+          "name": "Drinking Water",
+          "coordinates": [0, 4],
+          "connections": ["boys restroom second", "ladies restroom second", "common girls room"]
+        },
+        "common girls room": {
+          "name": "Common Girls Room",
+          "coordinates": [1, 5],
+          "connections": ["drinking water second", "digital electronic lab"]
+        },
+        "digital electronic lab": {
+          "name": "Digital and Electronic System Lab",
+          "coordinates": [2, 5],
+          "connections": ["common girls room", "embedded lab"]
+        },
+        "embedded lab": {
+          "name": "Embedded Lab",
+          "coordinates": [3, 5],
+          "connections": ["digital electronic lab", "ece department"]
+        },
+        "ece department": {
+          "name": "Department of Electronics and Communication Engineering",
+          "coordinates": [4, 5],
+          "connections": ["embedded lab", "circuits lab"]
+        },
+        "circuits lab": {
+          "name": "Circuits and Device Lab",
+          "coordinates": [5, 5],
+          "connections": ["ece department", "optical lab"]
+        },
+        "optical lab": {
+          "name": "Optical and Microwave Lab",
+          "coordinates": [6, 5],
+          "connections": ["circuits lab"]
+        },
+        "stairs to third": {
+          "name": "Stairs to Third Floor",
+          "coordinates": [5, 2],
+          "connections": ["lh12"],
+          "transition": "third"
+        }
+      }
+    },
+    "third": {
+      "name": "Third Floor",
+      "locations": {
+        "centralised lab": {
+          "name": "Centralised Lab",
+          "coordinates": [0, 2],
+          "connections": ["torvalds lab", "turning minds lab", "steps third"]
+        },
+        "torvalds lab": {
+          "name": "Torvalds Tech Lab",
+          "coordinates": [-1, 2],
+          "connections": ["centralised lab", "power unit left"]
+        },
+        "power unit left": {
+          "name": "Power Unit",
+          "coordinates": [-2, 2],
+          "connections": ["torvalds lab", "placement office"]
+        },
+        "placement office": {
+          "name": "Placement Office Room",
+          "coordinates": [-3, 2],
+          "connections": ["power unit left", "gd room"]
+        },
+        "gd room": {
+          "name": "GD Room-1",
+          "coordinates": [-4, 2],
+          "connections": ["placement office", "panel room"]
+        },
+        "panel room": {
+          "name": "Panel Room",
+          "coordinates": [-5, 2],
+          "connections": ["gd room", "waiting room"]
+        },
+        "waiting room": {
+          "name": "Waiting Room",
+          "coordinates": [-6, 2],
+          "connections": ["panel room"]
+        },
+        "turning minds lab": {
+          "name": "Turning Minds Lab",
+          "coordinates": [1, 2],
+          "connections": ["centralised lab", "lanier lab"]
+        },
+        "lanier lab": {
+          "name": "Lanier Virtual Lab",
+          "coordinates": [2, 2],
+          "connections": ["turning minds lab", "kernel lab"]
+        },
+        "kernel lab": {
+          "name": "Kernel Lab",
+          "coordinates": [3, 2],
+          "connections": ["lanier lab", "vanneuman lab"]
+        },
+        "vanneuman lab": {
+          "name": "Vanneuman Computing Lab",
+          "coordinates": [4, 2],
+          "connections": ["kernel lab", "babbage lab"]
+        },
+        "babbage lab": {
+          "name": "Charles Babbage Lab",
+          "coordinates": [5, 2],
+          "connections": ["vanneuman lab", "power unit right"]
+        },
+        "power unit right": {
+          "name": "Power Unit",
+          "coordinates": [6, 2],
+          "connections": ["babbage lab"]
+        },
+        "steps third": {
+          "name": "Steps",
+          "coordinates": [0, 1],
+          "connections": ["centralised lab"],
+          "transition": "second"
+        }
+      }
+    }
+  }
+}
